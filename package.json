@@ -7,7 +7,8 @@
     "test": "test"
   },
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+    "dev": "mocha --watch"
   },
   "author": "",
   "license": "ISC",
