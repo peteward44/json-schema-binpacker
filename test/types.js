@@ -1,6 +1,5 @@
-const { assert } = require( 'chai' );
-const binPacker = require( '..' );
-const limits = require( '../limits.js' );
+const execute = require( './execute.js' );
+const limits = require( '../lib/limits.js' );
 
 const schemas = {
 	"boolean": {
@@ -276,30 +275,4 @@ const tests = {
 	}
 };
 
-describe( 'Type tests', () => {
-	for ( const name in tests ) {
-		const test = tests[name];
-		describe( name, () => {
-			for ( const inputName in test.inputs ) {
-				const input = test.inputs[inputName];
-				it( inputName, () => {
-					const buffer = binPacker.compress( test.schema, input );
-					assert( buffer, `Buffer object created` );
-					assert( buffer.length > 0, `Buffer object has length greater than zero` );
-					let str = '';
-					for ( let i=0; i<buffer.length; ++i ) {
-						str += buffer[i].toString() + ' ';
-					}
-					console.log( `buffer=${str}` );
-					const newObj = binPacker.decompress( test.schema, buffer );
-					console.log( `newObj=${JSON.stringify( newObj )}` );
-					assert.deepEqual( input, newObj, `Decompressed object matches input object` );
-				} );
-			}
-		} );
-	}
-	
-	// it.skip( 'compress and decompress with different schema will fail', () => {
-		
-	// } );
-} );
+execute( 'Type tests', tests );
