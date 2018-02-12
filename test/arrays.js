@@ -232,3 +232,53 @@ execute( 'Arrays', {
 	}
 } );
 
+execute( 'Arrays', {
+	"tuples": {
+		schema: {
+			"type": "object",
+			"properties": {
+				"test": {
+					"type": "array",
+					"items": [
+						{
+							"type": "object",
+							"properties": {
+								"str": {
+									"type": "string"
+								}
+							}
+						},
+						{
+							"type": "string"
+						},
+						{
+							"type": "integer"
+						},
+						{
+							"type": "boolean"
+						}
+					]
+				}
+			}
+		},
+		inputs: {
+			"tuples": {
+				test: [
+					{ str: "object" },
+					"string",
+					7394,
+					true,
+					{ str: "object2" },
+					"string1",
+					7396,
+					false,
+					{ str: "object2" },
+					"string2",
+					7496,
+					false
+				]
+			}
+		}
+	}
+} );
+
